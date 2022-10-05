@@ -14,36 +14,44 @@ moving it to the end of the word and adding ‘ay’. “The quick brown fox” 
         string [] wordArray = userInput.Split(' ');
         string pigLatin = "";
         string engTranslation = "";
+        int arrLength = wordArray.Length;
 
-
-        for(int i= 0; i< wordArray.Length; i++)
+        for(int i = 0; i < arrLength;)
         {
             string word = wordArray[i];
-            if (i == (wordArray.Length -1))
+            if (arrLength == 1)
             {
-                pigLatin += word.Substring(1) + word[0] + "ay.";
+                pigLatin = word.Substring(1) + word.Substring(0,1) + "ay";
+                i++;
             }
-            else
+            else if(arrLength > 1)
             {
-                pigLatin += word.Substring(1) + word[0] + "ay ";
+                pigLatin += word.Substring(1) + word.Substring(0,1) + "ay ";
+                i++;
             }
         }
 
+
+        
         string [] pigLatinArr = pigLatin.Split(' ');
-        for(int i= 0; i < pigLatinArr.Length; i++)
+        int pigLength = pigLatinArr.Length;
+        
+        for(int x = 0; x < pigLatinArr.Length;)
         {
-            string word = pigLatinArr[i];
-            if (i == (pigLatinArr.Length -1))
+            string pigWord = pigLatinArr[x];
+            if (pigLength == 1)
             {
-                newEnglish += word[word.Length -4] + word.Substring(0,word.Length -4 )  + ".";
+                engTranslation = pigWord[pigLength -3] + pigWord.Substring(0,pigLength -3 );
+                x++;
             }
-            else
+            else if(pigLength > 1)
             {
-                newEnglish += word[word.Length -3] + word.Substring(0,word.Length -3) + " ";
+                engTranslation += pigWord[pigLength -2] + pigWord.Substring(0,pigLength -2) + " ";
+                x++;
             }
         }       
     Console.WriteLine($"{pigLatin}");
-    Console.WriteLine($"{newEnglish}");  
+    Console.WriteLine($"{engTranslation}");  
     
     }
 }
